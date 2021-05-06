@@ -1,6 +1,6 @@
 FROM vault:1.7.1
 
-RUN apk add wget unzip
+RUN apk add wget unzip jq
 
 WORKDIR vault
 
@@ -12,7 +12,7 @@ RUN mkdir plugins
 
 RUN cp vault-plugin-secrets-onepassword_v1.0.0 ./plugins/op-connect
 
-RUN apk del wget unzip
+COPY config.hcl config.hcl
 
 COPY dev-entrypoint.sh dev-entrypoint.sh
 
